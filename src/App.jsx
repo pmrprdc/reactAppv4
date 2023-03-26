@@ -16,15 +16,23 @@ function App() {
     e.preventDefault()
     setFormState(e.target.value)
   }
+
+  const clickHandler = (e) => {
+    
+    console.log(e)
+    setFormState("")
+    setDisplay("")
+  }
   console.log(formState)
   return (
     <div className="App">
-      <h1>{display}</h1>
-      <h1>How old are u</h1>
+      {display !== "" && <h1>Wow you are {display}!  That is {parseInt(display) * 365} days +</h1>}
+      {display === "" && <h1>How old are u</h1> }
       <form onSubmit={handleSubmit}>
-        <input value={formState} onChange={handleChange} type="text"></input>
-        <input type="submit"></input>
+      {display === "" &&  <input value={formState} onChange={handleChange} type="text"></input> }
+      {display === "" &&  <button type="submit">So What?</button> }
       </form>
+     {display !== "" && <button onClick={clickHandler} >Great</button>}
     </div>
   )
 }
